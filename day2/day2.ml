@@ -196,8 +196,15 @@ let part2 () =
       let result = int_of_opcode run_program.(0) in
       if result = 19690720
       then (
-        Stdio.printf "noun = %d, verb = %d\n" noun verb;
+        Stdio.printf "noun = %d, verb = %d, " noun verb;
         Stdio.printf "answer = %d\n" ((100 * noun) + verb) )
     done
   done
+;;
+
+let () =
+  Stdio.printf "Part 1 answer: ";
+  part1 ();
+  Stdio.printf "Part 2 answer: ";
+  part2 ()
 ;;
