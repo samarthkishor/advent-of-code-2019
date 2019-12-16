@@ -38,7 +38,13 @@ let has_two_identical_adjacent_digits n =
 let are_digits_increasing n =
   let str = Int.to_string n in
   let digits = List.init (String.length str) ~f:(String.get str) in
-  List.equal (List.sort digits ~compare:Char.compare) digits ~equal:Char.equal
+  let rec loop chars =
+    match chars with
+    | [] -> []
+    | [_] -> [true]
+    | x :: y :: rest -> Char.( <= ) x y :: loop (y :: rest)
+  in
+  loop digits |> List.fold ~init:true ~f:(fun a b -> a && b)
 ;;
 
 let part1 () =
